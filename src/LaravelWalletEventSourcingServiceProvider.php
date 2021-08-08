@@ -14,5 +14,4 @@ class LaravelWalletEventSourcingServiceProvider extends ServiceProvider
             ], 'config');
         }
     }
-
 }
