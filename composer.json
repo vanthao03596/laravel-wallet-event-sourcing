@@ -1,17 +1,17 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "vanthao03596/laravel-wallet-event-sourcing",
+    "description": "This is my package LaravelWalletEventSourcing",
     "keywords": [
-        ":vendor_name",
+        "vanthao03596",
         "laravel",
-        "package_slug"
+        "laravel-wallet-event-sourcing"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/vanthao03596/laravel-wallet-event-sourcing",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "phamthao",
+            "email": "phamthao03596@gmail.com",
             "role": "Developer"
         }
     ],
@@ -30,13 +30,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Vanthao03596\\LaravelWalletEventSourcing\\": "src",
+            "Vanthao03596\\LaravelWalletEventSourcing\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Vanthao03596\\LaravelWalletEventSourcing\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -50,10 +50,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Vanthao03596\\LaravelWalletEventSourcing\\LaravelWalletEventSourcingServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
+                "LaravelWalletEventSourcing": "Vanthao03596\\LaravelWalletEventSourcing\\LaravelWalletEventSourcingFacade"
             }
         }
     },
