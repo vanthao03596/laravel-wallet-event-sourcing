@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vanthao03596\LaravelWalletEventSourcing;
 
@@ -21,5 +21,4 @@ class LaravelWalletEventSourcingServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/wallet-event-sourcing.php', 'wallet-event-sourcing');
     }
-
 }
