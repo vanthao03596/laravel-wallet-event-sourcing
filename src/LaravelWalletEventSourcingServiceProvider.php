@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Vanthao03596\LaravelWalletEventSourcing;
 
 use Illuminate\Support\ServiceProvider;
 
 class LaravelWalletEventSourcingServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -14,4 +16,10 @@ class LaravelWalletEventSourcingServiceProvider extends ServiceProvider
             ], 'config');
         }
     }
+
+    public function register(): void
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/wallet-event-sourcing.php', 'wallet-event-sourcing');
+    }
+
 }
