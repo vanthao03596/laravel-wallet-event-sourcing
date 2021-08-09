@@ -18,8 +18,6 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        (new EventSourcingServiceProvider($this->app))->register();
-
         $this->setUpDatabase();
 
         Factory::guessFactoryNamesUsing(
@@ -58,8 +56,8 @@ class TestCase extends Orchestra
         include_once __DIR__.'/../database/migrations/create_stored_events_table.php.stub';
         (new \CreateStoredEventsTable())->up();
 
-        (new \CreateWalletEventSourcingTable())->down();
         include_once __DIR__.'/../database/migrations/create_wallet_event_sourcing_table.php.stub';
+        (new \CreateWalletEventSourcingTable())->down();
         (new \CreateWalletEventSourcingTable())->up();
     }
 }

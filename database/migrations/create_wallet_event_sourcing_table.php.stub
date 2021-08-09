@@ -69,4 +69,4 @@ class CreateWalletEventSourcingTable extends Migration
         Schema::dropIfExists('transaction_transfer_deposits');
         Schema::dropIfExists('transaction_transfer_withdraws');
     }
-};
+}

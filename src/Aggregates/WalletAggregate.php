@@ -15,7 +15,8 @@ class WalletAggregate extends AggregateRoot
         $this->recordThat(
             new WalletCreated(
                 name: $command->getName(),
-                holder: $command->getHolder(),
+                holderType: $command->getHolder()->getMorphClass(),
+                holderId: $command->getHolder()->getKey(),
                 meta: $command->getMeta()
             )
         );

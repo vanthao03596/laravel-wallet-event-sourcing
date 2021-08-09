@@ -28,7 +28,7 @@ class LaravelWalletEventSourcingServiceProvider extends PackageServiceProvider
              ]);
     }
 
-    public function packageRegistered()
+    public function packageBooted()
     {
         $projectionist = $this->app->get(Projectionist::class);
 
