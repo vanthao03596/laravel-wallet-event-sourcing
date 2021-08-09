@@ -3,6 +3,7 @@
 namespace Vanthao03596\LaravelWalletEventSourcing\Tests;
 
 use Dyrynda\Database\LaravelEfficientUuidServiceProvider;
+use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
@@ -10,7 +11,6 @@ use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\EventSourcing\EventSourcingServiceProvider;
 use Vanthao03596\LaravelWalletEventSourcing\LaravelWalletEventSourcingServiceProvider;
-use Illuminate\Contracts\Console\Kernel;
 
 class TestCase extends Orchestra
 {

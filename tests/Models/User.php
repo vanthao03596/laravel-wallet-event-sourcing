@@ -11,5 +11,4 @@ class User extends Model implements Holder
     use HasFactory;
 
     protected $table = 'users';
-
 }
