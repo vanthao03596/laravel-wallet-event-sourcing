@@ -7,7 +7,6 @@ use Ramsey\Uuid\Uuid;
 use Spatie\EventSourcing\Commands\CommandBus;
 use Vanthao03596\LaravelWalletEventSourcing\Aggregates\WalletAggregate;
 use Vanthao03596\LaravelWalletEventSourcing\Commands\CreateWallet;
-use Vanthao03596\LaravelWalletEventSourcing\Events\WalletCreated;
 use Vanthao03596\LaravelWalletEventSourcing\Projections\WalletProjection;
 use Vanthao03596\LaravelWalletEventSourcing\Support\Holder;
 use Vanthao03596\LaravelWalletEventSourcing\Tests\Models\User;
@@ -46,7 +45,6 @@ class WalletTest extends TestCase
             'holder_type' => $user->getMorphClass(),
             'holder_id' => $user->getKey(),
         ]);
-
     }
 
     /** @test */

@@ -44,9 +44,8 @@ class WalletAggregateRootTest extends TestCase
                     holderType: $this->user->getMorphClass(),
                     holderId: $this->user->getKey(),
                     meta: null,
-                )
+                ),
             ]);
-
     }
 
     /** @test */
@@ -63,8 +62,7 @@ class WalletAggregateRootTest extends TestCase
                 $walletAggregate->delete();
             })
             ->assertRecorded(expectedEvents: [
-                new WalletDeleted()
+                new WalletDeleted(),
             ]);
-
     }
 }
