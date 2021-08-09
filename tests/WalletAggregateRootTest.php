@@ -2,6 +2,7 @@
 
 namespace Vanthao03596\LaravelWalletEventSourcing\Tests;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Vanthao03596\LaravelWalletEventSourcing\Aggregates\WalletAggregate;
 use Vanthao03596\LaravelWalletEventSourcing\Commands\CreateWallet;
@@ -20,12 +21,15 @@ class WalletAggregateRootTest extends TestCase
     {
         parent::setUp();
 
+        Carbon::setTestNow('2020-01-01');
+
         $this->user = User::factory()->create();
     }
 
     /** @test */
     public function can_create_wallet()
     {
+
         WalletAggregate::fake(uuid: self::WALLET_UUID)
             ->given(events: [])
             ->when(callable: function (WalletAggregate $walletAggregate): string {
@@ -44,6 +48,7 @@ class WalletAggregateRootTest extends TestCase
                     holderType: $this->user->getMorphClass(),
                     holderId: $this->user->getKey(),
                     meta: null,
+                    date: now(),
                 ),
             ]);
     }
@@ -57,6 +62,7 @@ class WalletAggregateRootTest extends TestCase
                 holderType: $this->user->getMorphClass(),
                 holderId: $this->user->getKey(),
                 meta: null,
+                date: now(),
             )])
             ->when(callable: function (WalletAggregate $walletAggregate) {
                 $walletAggregate->delete();
