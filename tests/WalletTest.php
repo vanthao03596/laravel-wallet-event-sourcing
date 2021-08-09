@@ -37,7 +37,7 @@ class WalletTest extends TestCase
             meta: null,
         ));
 
-        $this->assertDatabaseHas(table: WalletProjection::class, data: [
+        $this->assertDatabaseHas(table: (new WalletProjection)->getTable(), data: [
             'name' => 'default wallet',
             'holder_type' => $this->user->getMorphClass(),
             'holder_id' => $this->user->getKey(),
@@ -59,7 +59,7 @@ class WalletTest extends TestCase
             meta: null,
         ));
 
-        $this->assertDatabaseHas(table: WalletProjection::class, data: [
+        $this->assertDatabaseHas(table: (new WalletProjection)->getTable(), data: [
             'name' => 'default wallet',
             'holder_type' => $this->user->getMorphClass(),
             'holder_id' => $this->user->getKey(),
@@ -69,7 +69,7 @@ class WalletTest extends TestCase
             ->delete()
             ->persist();
 
-        $this->assertDatabaseMissing(table: WalletProjection::class, data: [
+        $this->assertDatabaseMissing(table: (new WalletProjection)->getTable(), data: [
             'name' => 'default wallet',
             'holder_type' => $this->user->getMorphClass(),
             'holder_id' => $this->user->getKey(),
