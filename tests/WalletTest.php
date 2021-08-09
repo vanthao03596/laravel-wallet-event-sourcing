@@ -30,20 +30,17 @@ class WalletTest extends TestCase
         /** @var CommandBus $bus */
         $bus = app(abstract: CommandBus::class);
 
-        /** @var Holder $user */
-        $user = User::factory()->create();
-
         $bus->dispatch(command: new CreateWallet(
             uuid: $uuid,
             name: 'default wallet',
-            holder: $user,
+            holder: $this->user,
             meta: null,
         ));
 
         $this->assertDatabaseHas(table: WalletProjection::class, data: [
             'name' => 'default wallet',
-            'holder_type' => $user->getMorphClass(),
-            'holder_id' => $user->getKey(),
+            'holder_type' => $this->user->getMorphClass(),
+            'holder_id' => $this->user->getKey(),
         ]);
     }
 
@@ -55,20 +52,17 @@ class WalletTest extends TestCase
         /** @var CommandBus $bus */
         $bus = app(abstract: CommandBus::class);
 
-        /** @var Holder $user */
-        $user = User::factory()->create();
-
         $bus->dispatch(command: new CreateWallet(
             uuid: $uuid,
             name: 'default wallet',
-            holder: $user,
+            holder: $this->user,
             meta: null,
         ));
 
         $this->assertDatabaseHas(table: WalletProjection::class, data: [
             'name' => 'default wallet',
-            'holder_type' => $user->getMorphClass(),
-            'holder_id' => $user->getKey(),
+            'holder_type' => $this->user->getMorphClass(),
+            'holder_id' => $this->user->getKey(),
         ]);
 
         WalletAggregate::retrieve(uuid: $uuid)
@@ -77,8 +71,8 @@ class WalletTest extends TestCase
 
         $this->assertDatabaseMissing(table: WalletProjection::class, data: [
             'name' => 'default wallet',
-            'holder_type' => $user->getMorphClass(),
-            'holder_id' => $user->getKey(),
+            'holder_type' => $this->user->getMorphClass(),
+            'holder_id' => $this->user->getKey(),
         ]);
     }
 }
