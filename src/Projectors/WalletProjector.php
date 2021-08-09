@@ -22,8 +22,9 @@ class WalletProjector extends Projector
                 'name' => $event->name,
                 'slug' => Str::slug($event->name),
                 'meta' => $event->meta,
+                'holder_type' => $event->holderType,
+                'holder_id' => $event->holderId,
             ])
-            ->holder()->associate(model: $event->holder)
             ->save();
     }
 

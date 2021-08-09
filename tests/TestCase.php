@@ -5,10 +5,12 @@ namespace Vanthao03596\LaravelWalletEventSourcing\Tests;
 use Dyrynda\Database\LaravelEfficientUuidServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\EventSourcing\EventSourcingServiceProvider;
 use Vanthao03596\LaravelWalletEventSourcing\LaravelWalletEventSourcingServiceProvider;
+use Illuminate\Contracts\Console\Kernel;
 
 class TestCase extends Orchestra
 {
@@ -59,5 +61,12 @@ class TestCase extends Orchestra
         include_once __DIR__.'/../database/migrations/create_wallet_event_sourcing_table.php.stub';
         (new \CreateWalletEventSourcingTable())->down();
         (new \CreateWalletEventSourcingTable())->up();
+
+        include_once __DIR__.'/database/migrations/create_users_table.php.stub';
+        (new \CreateUsersTable())->up();
+
+        $this->app[Kernel::class]->setArtisan(null);
+
+        RefreshDatabaseState::$migrated = true;
     }
 }
