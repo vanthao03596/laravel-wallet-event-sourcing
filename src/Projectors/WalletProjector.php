@@ -24,7 +24,7 @@ class WalletProjector extends Projector
                 'meta' => $event->meta,
                 'holder_type' => $event->holderType,
                 'holder_id' => $event->holderId,
-                'created_at' => $event->date
+                'created_at' => $event->date,
             ])
             ->save();
     }

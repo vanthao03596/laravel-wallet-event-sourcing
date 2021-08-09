@@ -29,7 +29,6 @@ class WalletAggregateRootTest extends TestCase
     /** @test */
     public function can_create_wallet()
     {
-
         WalletAggregate::fake(uuid: self::WALLET_UUID)
             ->given(events: [])
             ->when(callable: function (WalletAggregate $walletAggregate): string {
