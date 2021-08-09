@@ -2,8 +2,8 @@
 
 namespace Vanthao03596\LaravelWalletEventSourcing\Projections\Concerns;
 
-use Vanthao03596\LaravelWalletEventSourcing\Projections\TransactionProjection;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Vanthao03596\LaravelWalletEventSourcing\Projections\TransactionProjection;
 
 trait MorphTransaction
 {

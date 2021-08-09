@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vanthao03596\LaravelWalletEventSourcing\Commands;
 
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +28,7 @@ class CreateWallet
         return $this->holder;
     }
 
-    public  function getMeta(): ?array
+    public function getMeta(): ?array
     {
         return $this->meta;
     }

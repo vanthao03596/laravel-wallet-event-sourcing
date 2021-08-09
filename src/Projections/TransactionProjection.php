@@ -2,10 +2,10 @@
 
 namespace Vanthao03596\LaravelWalletEventSourcing\Projections;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Dyrynda\Database\Casts\EfficientUuid;
 use Dyrynda\Database\Support\GeneratesUuid;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\EventSourcing\Projections\Projection;
 
 class TransactionProjection extends Projection

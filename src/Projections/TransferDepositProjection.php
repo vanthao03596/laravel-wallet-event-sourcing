@@ -26,5 +26,4 @@ class TransferDepositProjection extends Projection
     {
         return $this->belongsTo(related: WalletProjection::class, foreignKey: 'source_wallet_uuid');
     }
-
 }

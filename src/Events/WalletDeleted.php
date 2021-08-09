@@ -6,5 +6,4 @@ use Spatie\EventSourcing\StoredEvents\ShouldBeStored;
 
 class WalletDeleted extends ShouldBeStored
 {
-
 }

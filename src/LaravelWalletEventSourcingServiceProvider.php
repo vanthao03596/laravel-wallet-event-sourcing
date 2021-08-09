@@ -6,8 +6,8 @@ namespace Vanthao03596\LaravelWalletEventSourcing;
 
 use Spatie\EventSourcing\Projectionist;
 use Spatie\LaravelPackageTools\Package;
-use Vanthao03596\LaravelWalletEventSourcing\Projectors\WalletProjector;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Vanthao03596\LaravelWalletEventSourcing\Projectors\WalletProjector;
 
 class LaravelWalletEventSourcingServiceProvider extends PackageServiceProvider
 {
@@ -33,7 +33,7 @@ class LaravelWalletEventSourcingServiceProvider extends PackageServiceProvider
         $projectionist = $this->app->get(Projectionist::class);
 
         $projectionist->addProjectors([
-            WalletProjector::class
+            WalletProjector::class,
         ]);
     }
 }

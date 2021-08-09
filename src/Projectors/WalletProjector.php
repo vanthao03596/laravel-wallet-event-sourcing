@@ -2,14 +2,14 @@
 
 namespace Vanthao03596\LaravelWalletEventSourcing\Projectors;
 
+use Illuminate\Support\Str;
+use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 use Vanthao03596\LaravelWalletEventSourcing\Events\WalletCreated;
 use Vanthao03596\LaravelWalletEventSourcing\Events\WalletDeleted;
 use Vanthao03596\LaravelWalletEventSourcing\Events\WalletDeposited;
 use Vanthao03596\LaravelWalletEventSourcing\Projections\DepositProjection;
 use Vanthao03596\LaravelWalletEventSourcing\Projections\TransactionProjection;
 use Vanthao03596\LaravelWalletEventSourcing\Projections\WalletProjection;
-use Illuminate\Support\Str;
-use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class WalletProjector extends Projector
 {
@@ -44,7 +44,7 @@ class WalletProjector extends Projector
         $deposit = tap(DepositProjection::new()
             ->writeable()
             ->fill(attributes: [
-                'amount' => $event->amount
+                'amount' => $event->amount,
             ]))
             ->save();
 
