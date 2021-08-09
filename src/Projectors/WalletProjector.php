@@ -28,7 +28,7 @@ class WalletProjector extends Projector
             ->save();
     }
 
-    public function onWalletDeleted(WalletDeleted $event)
+    public function onWalletDeleted(WalletDeleted $event): void
     {
         $wallet = WalletProjection::whereUuid(uuid: $event->aggregateRootUuid())
             ->firstOrFail();
@@ -36,7 +36,7 @@ class WalletProjector extends Projector
         $wallet->writeable()->delete();
     }
 
-    public function onWalletDeposited(WalletDeposited $event)
+    public function onWalletDeposited(WalletDeposited $event): void
     {
         $wallet = WalletProjection::whereUuid(uuid: $event->aggregateRootUuid())
             ->firstOrFail();

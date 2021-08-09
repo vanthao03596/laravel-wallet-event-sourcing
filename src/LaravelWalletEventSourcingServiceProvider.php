@@ -30,13 +30,13 @@ class LaravelWalletEventSourcingServiceProvider extends PackageServiceProvider
              ]);
     }
 
-    public function registeringPackage()
+    public function registeringPackage(): void
     {
         $this->app->register(LaravelEfficientUuidServiceProvider::class);
         $this->app->register(EventSourcingServiceProvider::class);
     }
 
-    public function packageRegistered()
+    public function packageRegistered(): void
     {
         $projectionist = $this->app->get(Projectionist::class);
 

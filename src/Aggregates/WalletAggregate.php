@@ -31,7 +31,7 @@ class WalletAggregate extends AggregateRoot
         return $this;
     }
 
-    public function deposit(int | float $amount)
+    public function deposit(int | float $amount): self
     {
         $this->recordThat(new WalletDeposited($amount));
 
