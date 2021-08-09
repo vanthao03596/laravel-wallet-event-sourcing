@@ -14,10 +14,10 @@ class WalletAggregate extends AggregateRoot
     {
         $this->recordThat(
             new WalletCreated(
-            name: $command->getName(),
-            holder: $command->getHolder(),
-            meta: $command->getMeta()
-        )
+                name: $command->getName(),
+                holder: $command->getHolder(),
+                meta: $command->getMeta()
+            )
         );
 
         return $this;
