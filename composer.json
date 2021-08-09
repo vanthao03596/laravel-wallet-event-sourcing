@@ -17,7 +17,11 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/contracts": "^8.37"
+        "dyrynda/laravel-efficient-uuid": "^4.3",
+        "dyrynda/laravel-model-uuid": "^6.4",
+        "illuminate/contracts": "^8.37",
+        "spatie/laravel-event-sourcing": "^5.0",
+        "spatie/laravel-package-tools": "^1.9"
     },
     "require-dev": {
         "brianium/paratest": "^6.2",

@@ -1,0 +1,72 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateWalletEventSourcingTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('wallets', function (Blueprint $table) {
+            $table->efficientUuid('uuid')->index();
+            $table->morphs('holder');
+            $table->string('name');
+            $table->string('slug')->index();
+            $table->json('meta')->nullable();
+            $table->decimal('balance', 13, 4)->default(0);
+            $table->timestamps();
+        });
+
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->efficientUuid('uuid')->index();
+            $table->string('type')->index();
+            $table->foreignId('wallet_uuid')->index();
+
+            $table->string('transactionable_type');
+            $table->efficientUuid('transactionable_id');
+            $table->index(['transactionable_type', 'transactionable_id']);
+
+            $table->decimal('amount', 13, 4);
+            $table->timestamps();
+        });
+
+        Schema::create('transaction_deposits', function (Blueprint $table) {
+            $table->efficientUuid('uuid')->index();
+            $table->decimal('amount', 13, 4);
+            $table->timestamps();
+        });
+
+        Schema::create('transaction_withdraws', function (Blueprint $table) {
+            $table->efficientUuid('uuid')->index();
+            $table->decimal('amount', 13, 4);
+            $table->timestamps();
+        });
+
+        Schema::create('transaction_transfer_deposits', function (Blueprint $table) {
+            $table->efficientUuid('uuid')->index();
+            $table->efficientUuid('transfer_id')->index();
+            $table->decimal('amount', 13, 4);
+            $table->foreignId('source_wallet_uuid')->index();
+            $table->timestamps();
+        });
+
+        Schema::create('transaction_transfer_withdraws', function (Blueprint $table) {
+            $table->efficientUuid('uuid')->index();
+            $table->efficientUuid('transfer_id')->index();
+            $table->decimal('amount', 13, 4);
+            $table->foreignId('destination_wallet_uuid')->index();
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('wallets');
+        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('transaction_deposits');
+        Schema::dropIfExists('transaction_withdraws');
+        Schema::dropIfExists('transaction_transfer_deposits');
+        Schema::dropIfExists('transaction_transfer_withdraws');
+    }
+};

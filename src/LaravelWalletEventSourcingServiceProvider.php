@@ -4,21 +4,36 @@ declare(strict_types=1);
 
 namespace Vanthao03596\LaravelWalletEventSourcing;
 
-use Illuminate\Support\ServiceProvider;
+use Spatie\EventSourcing\Projectionist;
+use Spatie\LaravelPackageTools\Package;
+use Vanthao03596\LaravelWalletEventSourcing\Projectors\WalletProjector;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class LaravelWalletEventSourcingServiceProvider extends ServiceProvider
+class LaravelWalletEventSourcingServiceProvider extends PackageServiceProvider
 {
-    public function boot(): void
+    public function configurePackage(Package $package): void
     {
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../config/wallet-event-sourcing.php' => config_path('wallet-event-sourcing.php'),
-            ], 'config');
-        }
+        /*
+         * This class is a Package Service Provider
+         *
+         * More info: https://github.com/spatie/laravel-package-tools
+         */
+        $package
+            ->name('laravel-wallet-event-sourcing')
+            ->hasConfigFile()
+             ->hasMigrations([
+                 'create_snapshots_table',
+                 'create_stored_events_table',
+                 'create_wallet_event_sourcing_table',
+             ]);
     }
 
-    public function register(): void
+    public function packageRegistered()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/wallet-event-sourcing.php', 'wallet-event-sourcing');
+        $projectionist = $this->app->get(Projectionist::class);
+
+        $projectionist->addProjectors([
+            WalletProjector::class
+        ]);
     }
 }

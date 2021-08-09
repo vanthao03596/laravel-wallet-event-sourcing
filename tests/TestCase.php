@@ -2,12 +2,17 @@
 
 namespace Vanthao03596\LaravelWalletEventSourcing\Tests;
 
+use Dyrynda\Database\LaravelEfficientUuidServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\EventSourcing\EventSourcingServiceProvider;
 use Vanthao03596\LaravelWalletEventSourcing\LaravelWalletEventSourcingServiceProvider;
 
 class TestCase extends Orchestra
 {
+    use RefreshDatabase;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -20,6 +25,8 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
+            EventSourcingServiceProvider::class,
+            LaravelEfficientUuidServiceProvider::class,
             LaravelWalletEventSourcingServiceProvider::class,
         ];
     }
@@ -28,9 +35,20 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-        include_once __DIR__.'/../database/migrations/create_laravel-wallet-event-sourcing_table.php.stub';
-        (new \CreatePackageTable())->up();
-        */
+        include_once __DIR__.'/../database/migrations/create_snapshots_table.php.stub';
+        (new \CreateSnapshotsTable())->up();
+
+        include_once __DIR__.'/../database/migrations/create_stored_events_table.php.stub';
+        (new \CreateStoredEventsTable())->up();
+
+        include_once __DIR__.'/../database/migrations/create_wallet_event_sourcing_table.php.stub';
+        (new \CreateWalletEventSourcingTable())->up();
+    }
+
+    public function refreshServiceProvider()
+    {
+        app(LaravelWalletEventSourcingServiceProvider::class, ['app' => $this->app])
+            ->register()
+            ->boot();
     }
 }
