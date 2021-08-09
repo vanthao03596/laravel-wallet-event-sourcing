@@ -2,7 +2,6 @@
 
 namespace Vanthao03596\LaravelWalletEventSourcing\Projections;
 
-use App\Projections\WalletProjection;
 use Dyrynda\Database\Casts\EfficientUuid;
 use Dyrynda\Database\Support\GeneratesUuid;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

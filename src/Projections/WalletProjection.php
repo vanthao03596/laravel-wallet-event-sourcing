@@ -23,7 +23,7 @@ class WalletProjection extends Projection
 
     public function transactions(): HasMany
     {
-        return $this->hasMany(related: TransactionProjection::class);
+        return $this->hasMany(related: TransactionProjection::class, foreignKey: 'wallet_uuid');
     }
 
     public function holder(): MorphTo

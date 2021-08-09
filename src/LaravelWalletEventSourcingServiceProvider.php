@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Vanthao03596\LaravelWalletEventSourcing;
 
+use Dyrynda\Database\LaravelEfficientUuidServiceProvider;
+use Spatie\EventSourcing\EventSourcingServiceProvider;
 use Spatie\EventSourcing\Projectionist;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -28,7 +30,13 @@ class LaravelWalletEventSourcingServiceProvider extends PackageServiceProvider
              ]);
     }
 
-    public function packageBooted()
+    public function registeringPackage()
+    {
+        $this->app->register(LaravelEfficientUuidServiceProvider::class);
+        $this->app->register(EventSourcingServiceProvider::class);
+    }
+
+    public function packageRegistered()
     {
         $projectionist = $this->app->get(Projectionist::class);
 

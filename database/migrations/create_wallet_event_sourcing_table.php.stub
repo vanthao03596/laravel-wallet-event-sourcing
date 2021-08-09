@@ -24,8 +24,8 @@ class CreateWalletEventSourcingTable extends Migration
             $table->foreignId('wallet_uuid')->index();
 
             $table->string('transactionable_type');
-            $table->efficientUuid('transactionable_id');
-            $table->index(['transactionable_type', 'transactionable_id']);
+            $table->efficientUuid('transactionable_uuid');
+            $table->index(['transactionable_type', 'transactionable_uuid']);
 
             $table->decimal('amount', 13, 4);
             $table->timestamps();

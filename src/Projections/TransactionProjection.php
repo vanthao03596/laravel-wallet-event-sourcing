@@ -18,7 +18,7 @@ class TransactionProjection extends Projection
 
     protected $casts = [
         'uuid' => EfficientUuid::class,
-        'transactionable_id' => EfficientUuid::class,
+        'transactionable_uuid' => EfficientUuid::class,
     ];
 
     public function transactionable(): MorphTo
@@ -33,6 +33,6 @@ class TransactionProjection extends Projection
 
     public function uuidColumns(): array
     {
-        return ['uuid', 'transactionable_id'];
+        return ['uuid', 'transactionable_uuid'];
     }
 }
