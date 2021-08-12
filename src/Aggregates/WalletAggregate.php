@@ -18,6 +18,7 @@ class WalletAggregate extends AggregateRoot
                 holderType: $command->getHolder()->getMorphClass(),
                 holderId: $command->getHolder()->getKey(),
                 meta: $command->getMeta(),
+                currency: $command->getCurrency(),
                 date: now(),
             )
         );

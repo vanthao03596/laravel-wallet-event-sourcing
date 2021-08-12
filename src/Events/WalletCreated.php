@@ -13,6 +13,7 @@ class WalletCreated extends ShouldBeStored
         public int | string $holderId,
         public ?array $meta,
         public Carbon $date,
+        public string $currency,
     ) {
     }
 }

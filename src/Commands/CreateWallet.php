@@ -14,7 +14,8 @@ class CreateWallet
         #[AggregateUuid] public string $uuid,
         private string $name,
         private Holder $holder,
-        private ?array $meta
+        private ?array $meta,
+        private string $currency = 'USD',
     ) {
     }
 
@@ -26,6 +27,11 @@ class CreateWallet
     public function getHolder(): Holder
     {
         return $this->holder;
+    }
+
+    public function getCurrency(): string
+    {
+        return $this->currency;
     }
 
     public function getMeta(): ?array

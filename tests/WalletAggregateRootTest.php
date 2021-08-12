@@ -48,6 +48,7 @@ class WalletAggregateRootTest extends TestCase
                     holderId: $this->user->getKey(),
                     meta: null,
                     date: now(),
+                    currency: 'USD',
                 ),
             ]);
     }
@@ -62,6 +63,7 @@ class WalletAggregateRootTest extends TestCase
                 holderId: $this->user->getKey(),
                 meta: null,
                 date: now(),
+                currency: 'USD',
             )])
             ->when(callable: function (WalletAggregate $walletAggregate) {
                 $walletAggregate->delete();

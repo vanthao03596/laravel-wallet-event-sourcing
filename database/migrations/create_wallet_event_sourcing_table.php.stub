@@ -9,53 +9,57 @@ class CreateWalletEventSourcingTable extends Migration
     public function up()
     {
         Schema::create('wallets', function (Blueprint $table) {
-            $table->efficientUuid('uuid')->index();
+            $table->efficientUuid('uuid')->primary();
             $table->morphs('holder');
             $table->string('name');
             $table->string('slug')->index();
             $table->json('meta')->nullable();
             $table->decimal('balance', 13, 4)->default(0);
+            $table->char('currency');
             $table->timestamps();
         });
 
         Schema::create('transactions', function (Blueprint $table) {
-            $table->efficientUuid('uuid')->index();
-            $table->string('type')->index();
-            $table->foreignId('wallet_uuid')->index();
-
+            $table->efficientUuid('uuid')->primary();
+            $table->efficientUuid('wallet_uuid')->index();
             $table->string('transactionable_type');
             $table->efficientUuid('transactionable_uuid');
             $table->index(['transactionable_type', 'transactionable_uuid']);
-
             $table->decimal('amount', 13, 4);
+            $table->char('currency');
             $table->timestamps();
         });
 
         Schema::create('transaction_deposits', function (Blueprint $table) {
-            $table->efficientUuid('uuid')->index();
+            $table->efficientUuid('uuid')->primary();
+            $table->efficientUuid('wallet_uuid')->index();
             $table->decimal('amount', 13, 4);
+            $table->char('currency');
             $table->timestamps();
         });
 
         Schema::create('transaction_withdraws', function (Blueprint $table) {
-            $table->efficientUuid('uuid')->index();
+            $table->efficientUuid('uuid')->primary();
             $table->decimal('amount', 13, 4);
+            $table->char('currency');
             $table->timestamps();
         });
 
         Schema::create('transaction_transfer_deposits', function (Blueprint $table) {
-            $table->efficientUuid('uuid')->index();
+            $table->efficientUuid('uuid')->primary();
             $table->efficientUuid('transfer_id')->index();
-            $table->decimal('amount', 13, 4);
             $table->foreignId('source_wallet_uuid')->index();
+            $table->decimal('amount', 13, 4);
+            $table->char('currency');
             $table->timestamps();
         });
 
         Schema::create('transaction_transfer_withdraws', function (Blueprint $table) {
-            $table->efficientUuid('uuid')->index();
+            $table->efficientUuid('uuid')->primary();
             $table->efficientUuid('transfer_id')->index();
-            $table->decimal('amount', 13, 4);
             $table->foreignId('destination_wallet_uuid')->index();
+            $table->decimal('amount', 13, 4);
+            $table->char('currency');
             $table->timestamps();
         });
     }

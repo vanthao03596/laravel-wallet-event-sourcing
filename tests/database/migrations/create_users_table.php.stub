@@ -11,6 +11,10 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email');
+            $table->decimal('money', 13, 4)->nullable();
+            $table->decimal('debits', 13, 4)->nullable();
+            $table->decimal('wage', 13, 4)->nullable();
+            $table->char('currency', 3)->default('USD');
             $table->timestamps();
         });
     }
