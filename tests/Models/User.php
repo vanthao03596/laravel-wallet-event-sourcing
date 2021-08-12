@@ -17,7 +17,7 @@ class User extends Model implements Holder
         'debits' => MoneyCast::class.':currency',
     ];
 
-    protected  $guarded = [];
+    protected $guarded = [];
 
     protected $table = 'users';
 }

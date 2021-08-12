@@ -29,20 +29,19 @@ class MoneyCast implements CastsAttributes
         if ($value === null) {
             return [$key => $value];
         }
-        
+
         $money = $value;
-        
+
         $currency = $this->getCurrency($attributes);
 
-        if (!$money instanceof Money) { 
+        if (! $money instanceof Money) {
             $money = Money::of($value, $currency);
-
         }
 
         if ($this->currency) {
             return [
                 $key => (string)$money->getAmount(),
-                $this->currency => $money->getCurrency()->getCurrencyCode()
+                $this->currency => $money->getCurrency()->getCurrencyCode(),
             ];
         }
 

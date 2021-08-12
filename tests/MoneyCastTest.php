@@ -1,12 +1,9 @@
 <?php
 
-
 namespace Vanthao03596\LaravelWalletEventSourcing\Tests;
 
 use Brick\Money\Money;
-use stdClass;
 use Vanthao03596\LaravelWalletEventSourcing\Tests\Models\User;
-use InvalidArgumentException;
 
 class MoneyCastTest extends TestCase
 {

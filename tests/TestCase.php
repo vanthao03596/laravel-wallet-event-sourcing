@@ -3,10 +3,8 @@
 namespace Vanthao03596\LaravelWalletEventSourcing\Tests;
 
 use Dyrynda\Database\LaravelEfficientUuidServiceProvider;
-use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\EventSourcing\EventSourcingServiceProvider;
@@ -64,6 +62,5 @@ class TestCase extends Orchestra
 
         include_once __DIR__.'/database/migrations/create_users_table.php.stub';
         (new \CreateUsersTable())->up();
-
     }
 }
